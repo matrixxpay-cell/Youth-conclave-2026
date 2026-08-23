@@ -51,6 +51,43 @@ college's emblem, and has to be replaced.
 `payment.cashCounter` with the union's real values — `upiId` is printed on screen and
 encoded into the payment QR.
 
+## Deploying
+
+Two workflows live in `.github/workflows`:
+
+- **CI** runs lint, typecheck and build on every pull request.
+- **Deploy to GitHub Pages** builds a static export and publishes it.
+
+### Turning Pages on (once)
+
+Repository **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+The next push runs the workflow and the site lands at
+`https://<owner>.github.io/<repo>/`. The workflow also accepts a manual run from
+the Actions tab.
+
+It publishes from `main` and from `claude/**` branches, so the site can be looked
+at before it merges — drop that second pattern from `deploy-pages.yml` once only
+`main` should go live.
+
+### How the static build works
+
+`STATIC_EXPORT=1` switches `next.config.ts` to `output: "export"` with
+`trailingSlash`, so `/events/beats/` resolves to an `index.html` on a plain file
+host. `BASE_PATH` prefixes routes and assets for a project page served from
+`/<repo>`; the workflow passes whatever `actions/configure-pages` reports. Neither
+variable is set for `npm run dev` or `npm run build`, so a Node host (Vercel and
+friends) gets an ordinary server build with no configuration at all.
+
+Every route prerenders, `/register` included — it reads `?event=` and `?ref=` on
+the client, inside a `Suspense` boundary, rather than from the server.
+
+To reproduce the Pages build locally:
+
+```bash
+STATIC_EXPORT=1 BASE_PATH=/Youth-conclave-2026 npm run build
+# serve ./out from a directory named Youth-conclave-2026
+```
+
 ## How registration works today
 
 The flow is complete end to end in the browser: details → payment → confirmation,

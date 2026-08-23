@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { RegisterFlow } from "@/components/register/register-flow";
+import { RegisterFlowFromQuery } from "@/components/register/register-from-query";
 import { site } from "@/config/site";
 
 export const metadata: Metadata = {
@@ -8,11 +10,15 @@ export const metadata: Metadata = {
   robots: { index: false },
 };
 
-type PageProps = {
-  searchParams: Promise<{ event?: string; ref?: string }>;
-};
-
-export default async function RegisterPage({ searchParams }: PageProps) {
-  const { event, ref } = await searchParams;
-  return <RegisterFlow initialEventSlug={event} lookupId={ref} />;
+/**
+ * `?event=` and `?ref=` are read on the client so this page can be prerendered
+ * — including into a static export, which has no server to hand them over.
+ * The fallback is the same flow with its event picker showing.
+ */
+export default function RegisterPage() {
+  return (
+    <Suspense fallback={<RegisterFlow />}>
+      <RegisterFlowFromQuery />
+    </Suspense>
+  );
 }
