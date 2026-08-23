@@ -8,7 +8,7 @@ import { EventVisual } from "@/components/event-visual";
 import { Arrow } from "@/components/hero";
 import { useFinePointer } from "@/lib/use-fine-pointer";
 import { expo, viewportOnce } from "@/lib/motion";
-import { cn } from "@/lib/utils";
+import { cn, formatINR } from "@/lib/utils";
 
 export function EventList({ events }: { events: ConclaveEvent[] }) {
   return (
@@ -50,12 +50,12 @@ function EventRow({ event, position }: { event: ConclaveEvent; position: number 
         <motion.div
           className="absolute inset-0"
           initial={false}
-          animate={{ opacity: active ? 1 : 0.22 }}
+          animate={{ opacity: active ? 1 : 0.45 }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="absolute inset-y-0 right-0 w-full md:w-[46%]">
-            <EventVisual kind={event.kind} active={active} accent={event.accent} />
-            <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/90 to-ink/55 md:from-ink md:via-ink/60 md:to-transparent" />
+          <div className="absolute inset-y-0 right-0 w-full md:w-[62%]">
+            <EventVisual event={event} active={active} />
+            <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/90 to-ink/55 md:from-ink md:via-ink/35 md:to-ink/80" />
           </div>
         </motion.div>
 
@@ -98,11 +98,17 @@ function EventRow({ event, position }: { event: ConclaveEvent; position: number 
             ))}
           </h3>
 
-          <div className="flex items-end justify-between gap-6 md:w-56 md:flex-col md:items-start md:justify-center">
-            <div className="space-y-1.5">
-              <p className="label opacity-70">{event.category}</p>
-              <p className="label tabular opacity-40">
+          <div className="flex items-end justify-between gap-6 md:w-60 md:flex-col md:items-start md:justify-center">
+            <div className="space-y-2">
+              <p className="label" style={{ color: event.accent }}>
+                {event.category}
+              </p>
+              <p className="label tabular opacity-60">
                 {event.day} · {event.slot}
+              </p>
+              <p className="label opacity-40">{event.venue}</p>
+              <p className="label tabular opacity-40">
+                {event.teamSize} · {formatINR(event.fee)}
               </p>
             </div>
             <motion.span

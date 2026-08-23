@@ -17,7 +17,7 @@ export function EventsSection() {
             </h2>
           </div>
           <p className="label max-w-xs leading-relaxed opacity-45">
-            Six events across three days. Pick one, pick all of them — each is
+            Five events across three days. Pick one, pick all of them — each is
             registered separately.
           </p>
         </div>
@@ -33,7 +33,7 @@ export function EventsSection() {
           data-cursor="All events →"
           className="label group inline-flex items-center gap-3 opacity-60 transition-opacity hover:opacity-100"
         >
-          All six events, in detail
+          All five events, in detail
           <Arrow className="size-3.5 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1.5" />
         </Link>
       </div>

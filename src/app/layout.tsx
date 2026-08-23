@@ -21,7 +21,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 const title = `${site.name} ${site.year} — ${site.college}`;
-const description = `${site.dates} · ${site.city}, ${site.state}. Six events, three days, one campus. ${site.tagline}.`;
+const description = `${site.dates} · ${site.city}, ${site.state}. Five events, three days, one campus. ${site.tagline}.`;
 
 export const metadata: Metadata = {
   title: { default: title, template: `%s — ${site.name} ${site.year}` },

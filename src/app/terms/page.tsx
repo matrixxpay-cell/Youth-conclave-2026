@@ -30,7 +30,7 @@ export default function TermsPage() {
         },
         {
           heading: "Conduct",
-          body: `Harassment, plagiarised work, and abuse of volunteers or venues end your participation immediately, without refund. Judges' decisions on all six events are final.`,
+          body: `Harassment, plagiarised work, and abuse of volunteers or venues end your participation immediately, without refund. Judges' decisions on all five events are final.`,
         },
         {
           heading: "Media",

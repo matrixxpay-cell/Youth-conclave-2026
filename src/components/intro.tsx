@@ -9,7 +9,7 @@ import { SectionLabel } from "@/components/ui/section-label";
 import { viewportOnce } from "@/lib/motion";
 
 const stats = [
-  { value: 6, suffix: "", label: "Events" },
+  { value: 5, suffix: "", label: "Events" },
   { value: 3, suffix: "", label: "Days" },
   { value: 24, suffix: "+", label: "Colleges" },
   { value: 1200, suffix: "+", label: "Participants" },
@@ -36,7 +36,7 @@ export function Intro() {
 
           <div className="flex flex-col justify-end gap-8 lg:col-span-4 lg:col-start-9 lg:pb-4">
             <p className="text-lg leading-relaxed text-ink/70 sm:text-xl">
-              <RevealWords text="Three days where the campus stops being a campus. Debaters, designers, founders and folk ensembles take over every hall, and nobody is asked to pick between being serious and being loud." />
+              <RevealWords text="Three days where the campus stops being a campus. Musicians, researchers, illustrators, photographers and designers take over every hall, and nobody is asked to pick between being serious and being loud." />
             </p>
             <Reveal delay={0.2}>
               <p className="label opacity-45">

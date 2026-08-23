@@ -16,7 +16,7 @@ export function EventHero({ event }: { event: ConclaveEvent }) {
   return (
     <div ref={ref} className="relative overflow-hidden">
       <motion.div style={{ y: visualY }} className="absolute inset-0 -z-10">
-        <EventVisual kind={event.kind} active accent={event.accent} />
+        <EventVisual event={event} active />
         <div className="absolute inset-0 bg-gradient-to-b from-ink/85 via-ink/70 to-ink" />
         <div
           aria-hidden

@@ -53,17 +53,9 @@ export function EventCard({
             animate={{ scale: active ? 1.04 : 1 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           >
-            <EventVisual kind={event.kind} active={active} accent={event.accent} />
+            <EventVisual event={event} active={active} />
           </motion.div>
-          <motion.div
-            aria-hidden
-            className="absolute inset-0"
-            initial={false}
-            animate={{ opacity: active ? 0.14 : 0.04 }}
-            transition={{ duration: 0.5 }}
-            style={{ background: `linear-gradient(160deg, ${event.accent}, transparent 70%)` }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/10 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/25 to-transparent" />
 
           <motion.span
             className="label tabular absolute left-5 top-5"
@@ -95,18 +87,38 @@ export function EventCard({
           </div>
         </div>
 
-        <div className="mt-5 flex items-start justify-between gap-6">
-          <div className="space-y-2">
-            <p className="label opacity-70">{event.category}</p>
-            <p className="text-sm leading-relaxed text-paper/50">{event.blurb}</p>
+        <div className="mt-5 space-y-4">
+          <div className="flex items-start justify-between gap-6">
+            <div className="space-y-2">
+              <p className="label" style={{ color: event.accent }}>
+                {event.category}
+              </p>
+              <p className="text-sm leading-relaxed text-paper/55">{event.blurb}</p>
+            </div>
+            <p className="label tabular shrink-0 text-right opacity-45">
+              {formatINR(event.fee)}
+              <br />
+              <span className="opacity-60">per head</span>
+            </p>
           </div>
-          <p className="label tabular shrink-0 text-right opacity-40">
-            {event.day}
-            <br />
-            {formatINR(event.fee)}
-          </p>
+
+          <dl className="grid grid-cols-2 gap-x-6 gap-y-3 border-t border-paper/10 pt-4">
+            <Detail label="When" value={`${event.day} · ${event.slot}`} />
+            <Detail label="Where" value={event.venue} />
+            <Detail label="Format" value={event.duration} />
+            <Detail label="Entry" value={event.teamSize} />
+          </dl>
         </div>
       </Link>
     </motion.div>
+  );
+}
+
+function Detail({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <dt className="label opacity-30">{label}</dt>
+      <dd className="label tabular mt-1.5 opacity-70">{value}</dd>
+    </div>
   );
 }

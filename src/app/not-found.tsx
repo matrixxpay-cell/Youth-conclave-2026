@@ -15,7 +15,7 @@ export default function NotFound() {
           <span className="text-accent">here.</span>
         </h1>
         <p className="mt-8 max-w-md text-lg leading-relaxed text-paper/65">
-          This page has either moved or never existed. The six events are all
+          This page has either moved or never existed. The five events are all
           still where you left them.
         </p>
         <div className="mt-10 flex flex-wrap gap-4">

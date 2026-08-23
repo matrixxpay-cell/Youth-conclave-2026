@@ -22,7 +22,7 @@ const faqs = [
   },
   {
     q: "Can I enter more than one event?",
-    a: "Yes. Register once per event — the schedule is built so the six events only overlap in two places, both flagged on the event pages.",
+    a: "Yes. Register once per event — the schedule is built so the five events only overlap in one place, flagged on both event pages.",
   },
   {
     q: "What if my team changes after registering?",

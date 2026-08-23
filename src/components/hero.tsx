@@ -119,7 +119,7 @@ export function Hero() {
         <div className="order-1 flex items-end gap-10 sm:order-2">
           <FloatIn delay={0.7} className="hidden lg:block">
             <p className="label max-w-[14rem] leading-relaxed opacity-45">
-              Six events. Three days. One campus in {site.region}.
+              Five events. Three days. One campus in {site.region}.
             </p>
           </FloatIn>
           <FloatIn delay={0.5}>

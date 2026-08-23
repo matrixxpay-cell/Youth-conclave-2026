@@ -33,9 +33,9 @@ export function Manifesto() {
         <div className="mt-12 grid gap-8 lg:mt-20 lg:grid-cols-12">
           <Reveal className="lg:col-span-5 lg:col-start-7" delay={0.1}>
             <p className="text-lg leading-relaxed text-paper/70 sm:text-xl">
-              It is the week the college argues with itself in public. A fashion
-              ramp that carries a manifesto. A pitch stage that asks about unit
-              economics. A folk ensemble that refuses to be a museum exhibit.
+              It is the week the college argues with itself in public. A ramp
+              that carries a manifesto. A lectern that gets questioned back. A
+              studio where the prompt only goes up once the clock has started.
             </p>
             <p className="label mt-8 opacity-40">
               Open to every college in {`Assam`} and the Northeast.

@@ -1,7 +1,7 @@
 # Youth Conclave 2026
 
 Festival site for Youth Conclave 2026 at B. Borooah College (Autonomous), Guwahati —
-six events across three days, with registration, UPI/cash payment and a downloadable
+five events across three days, with registration, UPI/cash payment and a downloadable
 gate pass.
 
 Built as a Next.js App Router project: React 19, TypeScript, Tailwind CSS v4 and
@@ -22,7 +22,7 @@ npm run typecheck  # tsc --noEmit
 
 ```
 src/config/site.ts        Dates, venue, contact and payment details — edit this first
-src/data/events.ts        The six events: copy, schedule, rules, accent colour, fee
+src/data/events.ts        The five events: copy, schedule, rules, accent colour, fee
 src/lib/registration.ts   Registration model, ID format and the local store
 src/lib/ticket.ts         Canvas renderer for the downloadable pass
 src/components/           Sections, the event visual system, and the registration flow
@@ -54,10 +54,15 @@ Uploaded payment proof is currently held in the browser only; it is never transm
 
 ## Design notes
 
-- **No stock photography.** Each event kind gets a generated SVG visual
-  (`src/components/event-visual.tsx`) — a ramp, argument blocks, a waveform, an idea
-  graph, a woven geometric border, an aperture. They are a couple of kilobytes each,
-  scale to any block, and animate on transform and opacity only.
+- **Each event carries its own background.** A tinted field, a texture built from the
+  event itself, and line art on top — a rippling waveform for Beats, a lectern and a
+  listening room for the Students' Seminar, wet strokes and blots for Ink Your Idea,
+  an aperture between two strips of film for Shutter, lit silhouettes on a ramp for
+  Fashion for a Reason (`src/components/event-visual.tsx`). A couple of kilobytes each,
+  they scale to any block, and animate on transform, opacity and path length only.
+- **Photographs drop straight in.** Put a file in `/public` and set `image` on the event
+  in `src/data/events.ts`; that photograph then replaces the generated artwork
+  everywhere the event appears — rows, cards and the detail hero. No other change.
 - **Two hero compositions.** Below `lg` the wordmark stacks and runs edge to edge; from
   `lg` the year moves up beside YOUTH and CONCLAVE overruns the right edge.
 - **Custom classes sit in `@layer components`** so Tailwind utilities can still override
