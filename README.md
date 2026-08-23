@@ -31,9 +31,25 @@ src/app/                  Routes: /, /events, /events/[slug], /register, /privac
 
 ### Before going live
 
-`src/config/site.ts` ships with **placeholder payment details** (`youthconclave@upi`).
-Replace `payment.upiId`, `payment.payeeName` and `payment.cashCounter` with the union's
-real values — `upiId` is printed on screen and encoded into the payment QR.
+**Logos.** `src/config/site.ts` exports a `logos` object with both marks set to `null`.
+Drop the real files into `/public` and fill it in:
+
+```ts
+export const logos = {
+  college: { src: "/b-borooah-college.png", alt: "B. Borooah College", width: 512, height: 512 },
+  conclave: { src: "/youth-conclave.svg", alt: "Youth Conclave 2026", width: 512, height: 512 },
+};
+```
+
+They then take over everywhere a mark appears — the hero lockup, the navigation, the
+footer and the closing call to action. Until then the conclave falls back to its drawn
+mark and the college to a plain `B` monogram; that monogram is a stand-in, **not** the
+college's emblem, and has to be replaced.
+
+**Payment.** `src/config/site.ts` also ships **placeholder payment details**
+(`youthconclave@upi`). Replace `payment.upiId`, `payment.payeeName` and
+`payment.cashCounter` with the union's real values — `upiId` is printed on screen and
+encoded into the payment QR.
 
 ## How registration works today
 
@@ -64,7 +80,12 @@ Uploaded payment proof is currently held in the browser only; it is never transm
   in `src/data/events.ts`; that photograph then replaces the generated artwork
   everywhere the event appears — rows, cards and the detail hero. No other change.
 - **Two hero compositions.** Below `lg` the wordmark stacks and runs edge to edge; from
-  `lg` the year moves up beside YOUTH and CONCLAVE overruns the right edge.
+  `lg` the year moves up beside YOUTH, YOUTH steps back to `min(13vw,15vh)` and CONCLAVE
+  scales to `23vw` so it overruns the right edge by 120–190px at every desktop width
+  while the whole lockup still clears the fold.
+- **The attribution lockup** — college mark, divider, conclave mark, then "An initiative
+  by B. Borooah College" — opens the landing page and closes the footer. It stacks below
+  `sm` and runs as a row above it.
 - **Custom classes sit in `@layer components`** so Tailwind utilities can still override
   them. Unlayered rules would win against every utility.
 - **Motion respects `prefers-reduced-motion`**, and the custom cursor, pointer-tracked

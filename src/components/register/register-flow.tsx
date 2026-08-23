@@ -5,7 +5,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { eventBySlug } from "@/data/events";
 import { site } from "@/config/site";
-import { Logo } from "@/components/logo";
+import { ConclaveMark } from "@/components/logo";
 import { StepProgress } from "@/components/register/progress";
 import { StepDetails, type DetailErrors, type Details } from "@/components/register/step-details";
 import { StepPayment } from "@/components/register/step-payment";
@@ -104,7 +104,7 @@ export function RegisterFlow({
       <div className="mx-auto max-w-3xl">
         <header className="flex items-center justify-between gap-6 border-b border-current/12 pb-7">
           <Link href="/" data-cursor="Home" className="flex items-center gap-2.5">
-            <Logo className="size-5" />
+            <ConclaveMark className="size-5" />
             <span className="label hidden sm:inline">
               {site.name} <span className="opacity-45">/ 26</span>
             </span>

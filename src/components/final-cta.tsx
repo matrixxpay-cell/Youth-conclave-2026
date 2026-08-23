@@ -7,7 +7,7 @@ import { ActionLink, Magnetic } from "@/components/ui/magnetic";
 import { RevealLines } from "@/components/ui/reveal-words";
 import { Arrow } from "@/components/hero";
 import { StatusDot } from "@/components/ui/section-label";
-import { Logo } from "@/components/logo";
+import { ConclaveMark } from "@/components/logo";
 
 export function FinalCta() {
   const ref = useRef<HTMLElement>(null);
@@ -30,7 +30,7 @@ export function FinalCta() {
         className="relative mx-auto max-w-[88rem] px-4 pb-24 pt-28 sm:px-6 sm:pb-32 sm:pt-36 lg:px-10 lg:pb-40 lg:pt-52"
       >
         <div className="flex items-center gap-4">
-          <Logo spin className="size-6 text-accent" />
+          <ConclaveMark spin className="size-6 text-accent" />
           <StatusDot label={site.registrationsOpen ? "Registrations open" : "Opening soon"} />
         </div>
 

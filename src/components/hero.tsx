@@ -9,7 +9,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { site } from "@/config/site";
-import { Logo } from "@/components/logo";
+import { ConclaveMark, LogoLockup } from "@/components/logo";
 import { ActionLink } from "@/components/ui/magnetic";
 import { StatusDot } from "@/components/ui/section-label";
 import { expo } from "@/lib/motion";
@@ -40,19 +40,18 @@ export function Hero() {
         className="relative z-10 flex items-start justify-between gap-4"
       >
         <FloatIn delay={0.1}>
-          <p className="label leading-relaxed opacity-55">
-            {site.college}
-            <br />
-            {site.collegeSuffix}
-          </p>
+          <LogoLockup />
         </FloatIn>
         <FloatIn delay={0.16} className="text-right">
           <p className="label leading-relaxed opacity-55">
             {site.city} • {site.state}
-            <br />
-            <span className="tabular">{site.dates}</span>
-            <br />
-            <span className="tabular hidden opacity-60 sm:inline">{site.coords}</span>
+            {/* On a 360px screen the dates move down beside the status instead. */}
+            <span className="hidden sm:inline">
+              <br />
+              <span className="tabular">{site.dates}</span>
+              <br />
+              <span className="tabular opacity-60">{site.coords}</span>
+            </span>
           </p>
         </FloatIn>
       </motion.div>
@@ -60,7 +59,7 @@ export function Hero() {
       {/* The type */}
       <motion.div style={{ y: typeY, opacity: fade }} className="relative z-10 py-8">
         <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 w-[62vw] max-w-[34rem] -translate-x-1/2 -translate-y-1/2 opacity-[0.055]">
-          <Logo spin className="w-full" />
+          <ConclaveMark spin className="w-full" />
         </div>
 
         {/*
@@ -70,7 +69,7 @@ export function Hero() {
         */}
         <h1 className="display type-hero">
           <Line delay={0.18}>
-            <span className="flex items-baseline justify-between gap-6">
+            <span className="flex items-baseline justify-between gap-6 lg:text-[min(13vw,15vh)]">
               <span>Youth</span>
               <span className="hidden text-[0.62em] lg:inline-block">
                 <Year />
@@ -78,7 +77,7 @@ export function Hero() {
             </span>
           </Line>
           <Line delay={0.26}>
-            <span className="-ml-[0.035em] block whitespace-nowrap">
+            <span className="-ml-[0.035em] block whitespace-nowrap lg:text-[23vw]">
               Conclave
             </span>
           </Line>
@@ -113,6 +112,7 @@ export function Hero() {
               <span className="label opacity-55">Coming soon</span>
             )}
             <Clock />
+            <span className="label tabular opacity-40 sm:hidden">{site.dates}</span>
           </div>
         </FloatIn>
 
