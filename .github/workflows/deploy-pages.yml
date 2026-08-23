@@ -23,13 +23,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Pages has to be switched on by a repository admin first:
+      # Settings -> Pages -> Build and deployment -> Source: GitHub Actions.
+      # The action's `enablement: true` cannot do it for us — creating a Pages
+      # site is not something the Actions token is allowed to do, and it fails
+      # with "Resource not accessible by integration". Left at the default so
+      # the error names the missing setting instead.
       - name: Configure Pages
         id: pages
         uses: actions/configure-pages@v5
-        with:
-          # Turns Pages on for the repository on the first run, so nobody has to
-          # visit Settings first. Harmless once it is already enabled.
-          enablement: true
 
       - uses: actions/setup-node@v4
         with:
