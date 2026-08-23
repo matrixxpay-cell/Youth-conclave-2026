@@ -26,6 +26,10 @@ jobs:
       - name: Configure Pages
         id: pages
         uses: actions/configure-pages@v5
+        with:
+          # Turns Pages on for the repository on the first run, so nobody has to
+          # visit Settings first. Harmless once it is already enabled.
+          enablement: true
 
       - uses: actions/setup-node@v4
         with:

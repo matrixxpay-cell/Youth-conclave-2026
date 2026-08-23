@@ -58,12 +58,17 @@ Two workflows live in `.github/workflows`:
 - **CI** runs lint, typecheck and build on every pull request.
 - **Deploy to GitHub Pages** builds a static export and publishes it.
 
-### Turning Pages on (once)
+### Where it publishes
 
-Repository **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-The next push runs the workflow and the site lands at
-`https://<owner>.github.io/<repo>/`. The workflow also accepts a manual run from
-the Actions tab.
+The deploy workflow enables Pages itself on its first run (`enablement: true` on
+`actions/configure-pages`), so there is nothing to switch on by hand. The site
+lands at `https://<owner>.github.io/<repo>/`. The workflow also accepts a manual
+run from the Actions tab.
+
+If that first run is refused, the account lacks permission to enable Pages
+through the API — set it once under **Settings → Pages → Build and deployment →
+Source: GitHub Actions** and re-run. Pages is free on public repositories; a
+private one needs a paid plan.
 
 It publishes from `main` and from `claude/**` branches, so the site can be looked
 at before it merges — drop that second pattern from `deploy-pages.yml` once only
