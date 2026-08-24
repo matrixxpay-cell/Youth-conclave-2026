@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import type { ConclaveEvent, EventKind } from "@/data/events";
-import { cn } from "@/lib/utils";
+import { cn, assetPath } from "@/lib/utils";
 
 type ArtProps = { active: boolean; accent: string };
 
@@ -39,7 +39,7 @@ export function EventVisual({
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
         >
           <Image
-            src={image.src}
+            src={assetPath(image.src)}
             alt={image.alt}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"

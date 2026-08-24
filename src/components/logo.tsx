@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { collegeLogo, conclaveLogo, site } from "@/config/site";
-import { cn } from "@/lib/utils";
+import { cn, assetPath } from "@/lib/utils";
 
 /**
  * The full conclave lockup. It carries the wordmark, the year and the tagline,
@@ -20,7 +20,7 @@ export function ConclaveLogo({ className }: { className?: string }) {
       )}
     >
       <Image
-        src={conclaveLogo.banner.src}
+        src={assetPath(conclaveLogo.banner.src)}
         alt={conclaveLogo.banner.alt}
         width={conclaveLogo.banner.width}
         height={conclaveLogo.banner.height}
@@ -35,7 +35,7 @@ export function ConclaveLogo({ className }: { className?: string }) {
 export function ConclaveMark({ className }: { className?: string }) {
   return (
     <Image
-      src={conclaveLogo.mark.src}
+      src={assetPath(conclaveLogo.mark.src)}
       alt=""
       aria-hidden
       width={conclaveLogo.mark.width}
@@ -54,7 +54,7 @@ export function CollegeMark({ className }: { className?: string }) {
   if (collegeLogo) {
     return (
       <Image
-        src={collegeLogo.src}
+        src={assetPath(collegeLogo.src)}
         alt={collegeLogo.alt}
         width={collegeLogo.width}
         height={collegeLogo.height}

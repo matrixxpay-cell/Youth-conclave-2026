@@ -22,6 +22,9 @@ const nextConfig: NextConfig = {
     // Nothing is optimising images behind a static export.
     unoptimized: staticExport,
   },
+  // next/image leaves `src` alone when unoptimized, so basePath is never
+  // prepended for us — `assetPath()` does it, and needs the value at build time.
+  env: { NEXT_PUBLIC_BASE_PATH: basePath },
 };
 
 export default nextConfig;
