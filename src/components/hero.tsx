@@ -9,7 +9,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { site } from "@/config/site";
-import { ConclaveMark, LogoLockup } from "@/components/logo";
+import { LogoLockup } from "@/components/logo";
 import { ActionLink } from "@/components/ui/magnetic";
 import { StatusDot } from "@/components/ui/section-label";
 import { expo } from "@/lib/motion";
@@ -30,7 +30,7 @@ export function Hero() {
   return (
     <section
       ref={ref}
-      className="relative flex min-h-[100svh] flex-col justify-between overflow-hidden px-4 pb-6 pt-24 sm:px-6 sm:pb-10 sm:pt-28"
+      className="relative flex min-h-[100svh] flex-col justify-between overflow-hidden px-4 pb-6 pt-24 sm:px-6 sm:pb-10 sm:pt-28 lg:pt-24"
     >
       <AmbientField />
 
@@ -57,10 +57,15 @@ export function Hero() {
       </motion.div>
 
       {/* The type */}
-      <motion.div style={{ y: typeY, opacity: fade }} className="relative z-10 py-8">
-        <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 w-[62vw] max-w-[34rem] -translate-x-1/2 -translate-y-1/2 opacity-[0.055]">
-          <ConclaveMark spin className="w-full" />
-        </div>
+      <motion.div style={{ y: typeY, opacity: fade }} className="relative z-10 py-8 lg:py-6">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute left-1/2 top-1/2 -z-10 aspect-square w-[70vw] max-w-[40rem] -translate-x-1/2 -translate-y-1/2 rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(242,238,229,0.045) 0%, rgba(242,238,229,0.02) 55%, transparent 72%)",
+          }}
+        />
 
         {/*
           Two compositions, one heading. Below lg the three lines stack and the

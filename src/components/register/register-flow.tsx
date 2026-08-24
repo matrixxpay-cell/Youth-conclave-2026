@@ -104,7 +104,7 @@ export function RegisterFlow({
       <div className="mx-auto max-w-3xl">
         <header className="flex items-center justify-between gap-6 border-b border-current/12 pb-7">
           <Link href="/" data-cursor="Home" className="flex items-center gap-2.5">
-            <ConclaveMark className="size-5" />
+            <ConclaveMark className="size-6" />
             <span className="label hidden sm:inline">
               {site.name} <span className="opacity-45">/ 26</span>
             </span>

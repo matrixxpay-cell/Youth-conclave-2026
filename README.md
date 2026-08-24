@@ -31,20 +31,21 @@ src/app/                  Routes: /, /events, /events/[slug], /register, /privac
 
 ### Before going live
 
-**Logos.** `src/config/site.ts` exports a `logos` object with both marks set to `null`.
-Drop the real files into `/public` and fill it in:
+**Logos.** The conclave's own artwork is in place — `public/youth-conclave-logo.webp`
+is the full lockup, used at the top of the landing page and in the footer, and
+`public/youth-conclave-mark.webp` is a square crop of the Y-over-the-window for
+navigation and the browser tab, where the full banner would be a smudge. Both are
+declared in `conclaveLogo` in `src/config/site.ts`.
+
+The **college emblem is still a stand-in**: `collegeLogo` in that same file is
+`null`, so a plain `B` monogram renders instead. Drop the real file into
+`/public` and fill it in:
 
 ```ts
-export const logos = {
-  college: { src: "/b-borooah-college.png", alt: "B. Borooah College", width: 512, height: 512 },
-  conclave: { src: "/youth-conclave.svg", alt: "Youth Conclave 2026", width: 512, height: 512 },
+export const collegeLogo: LogoAsset | null = {
+  src: "/b-borooah-college.png", alt: "B. Borooah College", width: 512, height: 512,
 };
 ```
-
-They then take over everywhere a mark appears — the hero lockup, the navigation, the
-footer and the closing call to action. Until then the conclave falls back to its drawn
-mark and the college to a plain `B` monogram; that monogram is a stand-in, **not** the
-college's emblem, and has to be replaced.
 
 **Payment.** `src/config/site.ts` also ships **placeholder payment details**
 (`youthconclave@upi`). Replace `payment.upiId`, `payment.payeeName` and

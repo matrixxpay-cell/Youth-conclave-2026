@@ -1,47 +1,67 @@
 import Image from "next/image";
-import { logos, site } from "@/config/site";
+import { collegeLogo, conclaveLogo, site } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 /**
- * The conclave mark: a filled core inside an open ring, split by a horizon —
- * a sun coming up over the Brahmaputra, reduced to two strokes. Replaced by the
- * real artwork as soon as `logos.conclave` points at a file.
+ * The full conclave lockup. It carries the wordmark, the year and the tagline,
+ * so it is only ever used at a width where those can actually be read — the
+ * hero and the footer. Anywhere smaller gets `ConclaveMark` instead.
+ *
+ * The artwork is a rectangle with its own painted background, so it sits on a
+ * rounded plate with a hairline rather than floating loose on the dark ground.
  */
-export function ConclaveMark({
-  className,
-  spin = false,
-}: {
-  className?: string;
-  spin?: boolean;
-}) {
-  if (logos.conclave) return <MarkImage asset={logos.conclave} className={className} />;
-
+export function ConclaveLogo({ className }: { className?: string }) {
   return (
-    <svg
-      viewBox="0 0 32 32"
-      fill="none"
-      aria-hidden
-      className={cn(spin && "motion-safe:animate-[spin_18s_linear_infinite]", className)}
+    <span
+      className={cn(
+        "block overflow-hidden rounded-lg ring-1 ring-paper/15",
+        "shadow-[0_18px_50px_-28px_rgba(0,0,0,0.9)]",
+        className,
+      )}
     >
-      <circle cx="16" cy="16" r="14.5" stroke="currentColor" strokeOpacity="0.35" />
-      <path
-        d="M1.5 16a14.5 14.5 0 0 1 29 0"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
+      <Image
+        src={conclaveLogo.banner.src}
+        alt={conclaveLogo.banner.alt}
+        width={conclaveLogo.banner.width}
+        height={conclaveLogo.banner.height}
+        priority
+        className="h-auto w-full"
       />
-      <circle cx="16" cy="16" r="5.5" fill="currentColor" />
-    </svg>
+    </span>
+  );
+}
+
+/** The square Y-over-the-window crop, for navigation and other small slots. */
+export function ConclaveMark({ className }: { className?: string }) {
+  return (
+    <Image
+      src={conclaveLogo.mark.src}
+      alt=""
+      aria-hidden
+      width={conclaveLogo.mark.width}
+      height={conclaveLogo.mark.height}
+      className={cn("rounded-[0.3rem] object-cover", className)}
+    />
   );
 }
 
 /**
- * The college mark. Until `logos.college` points at the real emblem this is a
+ * The college emblem. Until `collegeLogo` points at the real file this is a
  * plain monogram standing in for it — deliberately generic rather than an
  * invented crest.
  */
 export function CollegeMark({ className }: { className?: string }) {
-  if (logos.college) return <MarkImage asset={logos.college} className={className} />;
+  if (collegeLogo) {
+    return (
+      <Image
+        src={collegeLogo.src}
+        alt={collegeLogo.alt}
+        width={collegeLogo.width}
+        height={collegeLogo.height}
+        className={cn("object-contain", className)}
+      />
+    );
+  }
 
   return (
     <svg viewBox="0 0 32 32" fill="none" aria-hidden className={className}>
@@ -62,51 +82,36 @@ export function CollegeMark({ className }: { className?: string }) {
   );
 }
 
-function MarkImage({ asset, className }: { asset: NonNullable<typeof logos.college>; className?: string }) {
-  return (
-    <Image
-      src={asset.src}
-      alt={asset.alt}
-      width={asset.width}
-      height={asset.height}
-      className={cn("h-full w-auto object-contain", className)}
-    />
-  );
-}
-
 /**
- * College mark and conclave mark side by side, over the line that says how the
- * two relate. This is the site's primary attribution lockup — it opens the
+ * The conclave's logo over the line saying whose initiative it is. Opens the
  * landing page and closes the footer.
  */
 export function LogoLockup({
   className,
-  size = "md",
+  width = "w-[min(58vw,12.5rem)]",
 }: {
   className?: string;
-  size?: "sm" | "md";
+  width?: string;
 }) {
-  const mark = size === "sm" ? "size-7" : "size-9 sm:size-11";
-
   return (
     <div
       className={cn(
-        "flex flex-col gap-3.5 sm:flex-row sm:items-center sm:gap-4",
+        "flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5",
         className,
       )}
     >
-      <div className="flex items-center gap-3 sm:gap-4">
-        <CollegeMark className={cn(mark, "shrink-0 opacity-80")} />
-        <span aria-hidden className="h-7 w-px bg-current opacity-20 sm:h-9" />
-        <ConclaveMark className={cn(mark, "shrink-0 text-accent")} />
+      <ConclaveLogo className={cn(width, "shrink-0")} />
+      <span aria-hidden className="hidden h-12 w-px bg-current opacity-15 sm:block" />
+      <div className="flex items-center gap-3">
+        <CollegeMark className="size-7 shrink-0 opacity-70" />
+        <p className="label leading-relaxed opacity-55">
+          An initiative by
+          <br />
+          <span className="opacity-80">
+            {site.college} {site.collegeSuffix}
+          </span>
+        </p>
       </div>
-      <p className="label leading-relaxed opacity-55">
-        An initiative by
-        <br />
-        <span className="opacity-80">
-          {site.college} {site.collegeSuffix}
-        </span>
-      </p>
     </div>
   );
 }

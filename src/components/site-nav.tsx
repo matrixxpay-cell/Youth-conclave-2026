@@ -56,7 +56,7 @@ export function SiteNav() {
             aria-label={`${site.name} ${site.year} — home`}
             data-cursor="Home"
           >
-            <ConclaveMark className="size-5 shrink-0" />
+            <ConclaveMark className="size-6 shrink-0" />
             <span className="label hidden sm:inline">
               {site.name} <span className="opacity-45">/ 26</span>
             </span>
